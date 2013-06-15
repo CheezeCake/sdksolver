@@ -26,5 +26,6 @@ void destroy_grid(Grid*);
 int load_grid(FILE*, Grid*);
 int load_from_file(char*, Grid*);
 int format_ok(char*, size_t len);
+void print(Grid*);
 
 #endif
