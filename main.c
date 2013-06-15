@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 
 	if(error == BAD_FORMAT)
 	{
-		fprintf(stderr, "Bad formating\n");
+		fprintf(stderr, "bad formating\n");
 		return 2;
 	}
 	else if(error == BAD_STREAM)
