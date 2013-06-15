@@ -10,7 +10,7 @@
 #define CHAR(X) (X+'0')
 
 #define AUTHORIZED_CHAR(X) (((X >= '0') && (X <= '9')) || \
-                            ((X >= 'A') && (X <= 'Z')))
+                            ((X >= 'A') && (X <= 'Z')) || (X == ' '))
 
 enum {SUCCESS = 0, BAD_FORMAT, BAD_STREAM};
 
@@ -21,11 +21,11 @@ typedef struct grid
 	int region_size;
 } Grid;
 
-Grid* create_grid(int size);
+void create_grid(Grid*, int size);
 void destroy_grid(Grid*);
 int load_grid(FILE*, Grid*);
 int load_from_file(char*, Grid*);
 int format_ok(char*, size_t len);
-void print(Grid*);
+void print_grid(Grid*);
 
 #endif

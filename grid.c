@@ -4,30 +4,24 @@
 #include <math.h>
 #include "grid.h"
 
-Grid* create_grid(int size)
+void create_grid(Grid *grid, int size)
 {
-	Grid *ret = NULL;
 	int i;
 
-	ret = malloc(sizeof(Grid));
-	ret->size = size;
-	ret->region_size = sqrt(size);
-	ret->grid = calloc(size, sizeof(char*));
+	grid->size = size;
+	grid->region_size = sqrt(size);
+	grid->grid = calloc(size, sizeof(char*));
 
 	for(i = 0; i < size; i++)
-		ret->grid[i] = calloc(size, sizeof(char));
-	
-	return ret;
+		grid->grid[i] = calloc(size, sizeof(char));
 }
 
-void destoy_grid(Grid *grid)
+void destroy_grid(Grid *grid)
 {
 	int i;
 	for(i = 0; i < grid->size; i++)
 		free(grid->grid[i]);
 	free(grid->grid);
-
-	free(grid);
 }
 
 int format_ok(char *buffer, size_t len)
@@ -48,7 +42,6 @@ int load_grid(FILE *stream, Grid *grid)
 	size_t len;
 	int i;
 	
-	grid = NULL;
 	buffer = fgetln(stream, &len);
 	
 	if(buffer == NULL)
@@ -60,7 +53,7 @@ int load_grid(FILE *stream, Grid *grid)
 	if(!format_ok(buffer, len))
 		return BAD_FORMAT;
 	
-	grid = create_grid(len-1);
+	create_grid(grid, len-1);
 	strncpy(grid->grid[0], buffer, grid->size);
 
 	for(i = 1; i < grid->size; i++)
@@ -71,7 +64,6 @@ int load_grid(FILE *stream, Grid *grid)
 			!format_ok(buffer, grid->size))
 		{
 			destroy_grid(grid);
-			grid = NULL;
 			return BAD_FORMAT;
 		}
 
@@ -95,7 +87,7 @@ int load_from_file(char *file, Grid *grid)
 	return code;
 }
 
-void print(Grid *grid)
+void print_grid(Grid *grid)
 {
 	int i, j;
 	for(i = 0; i < grid->size; i++)
