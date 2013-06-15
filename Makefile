@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-02 -W -Wall -pedantic -ansi
+CFLAGS=-O2 -W -Wall -pedantic -ansi
 TARGET=sdksolver
 
 all: $(TARGET)
@@ -10,10 +10,12 @@ $(TARGET): main.o grid.o
 %.o: %.c
 	$(CC) -c $^ $(CFLAGS)
 
-.PHONY: clean mrproper
+.PHONY: clean mrproper rebuild
 
 clean:
 	@rm -f *.o
 
 mrproper: clean
 	@rm -f $(TARGET)
+
+rebuild: mrproper all
