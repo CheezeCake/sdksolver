@@ -27,9 +27,9 @@ void destroy_grid(Grid *grid)
 int format_ok(char *buffer, size_t len)
 {
 	size_t i;
-	for(i = 0; i < (len-1); i++)
+	for(i = 0; i < len; i++)
 	{
-		if(!AUTHORIZED_CHAR(buffer[i]))
+		if(!AUTHORIZED_CHAR(buffer[i], (int)len))
 			return 0;
 	}
 
@@ -50,9 +50,9 @@ int load_grid(FILE *stream, Grid *grid)
 	if(((len-1) < SIZE_MIN) || ((len-1) > SIZE_MAX))
 		return BAD_FORMAT;
 	
-	if(!format_ok(buffer, len))
+	if(!format_ok(buffer, len-1))
 		return BAD_FORMAT;
-	
+
 	create_grid(grid, len-1);
 	strncpy(grid->grid[0], buffer, grid->size);
 

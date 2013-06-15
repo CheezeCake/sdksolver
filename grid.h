@@ -3,14 +3,16 @@
 
 #include <stdio.h>
 
-#define SIZE_MIN 1
-#define SIZE_MAX 64
+#define SIZE_MIN 2
+#define SIZE_MAX 35
 
-#define INT(X)  (X-'0')
-#define CHAR(X) (X+'0')
+#define IS_NUMBER(X) ((X >= '1') && (X <= '9'))
+#define IS_LETTER(X) ((X >= 'A') && (X <= 'Z'))
+#define INT(X)  ((IS_NUMBER(X)) ? (X-'0') : ((X-'A')+10))
+#define CHAR(X) ((IS_NUMBER(X)) ? (X+'0') : X)
 
-#define AUTHORIZED_CHAR(X) (((X >= '0') && (X <= '9')) || \
-                            ((X >= 'A') && (X <= 'Z')) || (X == ' '))
+#define AUTHORIZED_CHAR(X, L) ((IS_NUMBER(X) || IS_LETTER(X)) ? (INT(X) <= L) \
+                                                              : (X == ' '))
 
 enum {SUCCESS = 0, BAD_FORMAT, BAD_STREAM};
 
