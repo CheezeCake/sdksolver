@@ -4,7 +4,7 @@ TARGET=sdksolver
 
 all: $(TARGET)
 
-$(TARGET): main.o grid.o
+$(TARGET): main.o grid.o solve.o
 	$(CC) $^ -o $@
 
 %.o: %.c
