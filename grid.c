@@ -47,12 +47,10 @@ int load_grid(FILE *stream, Grid *grid)
 	if(buffer == NULL)
 		return BAD_STREAM;
 	
-	if(((len-1) < _MIN_) || ((len-1) > _MAX_))
+	if(((len-1) < _MIN_) || ((len-1) > _MAX_) || 
+		!format_ok(buffer, len-1))
 		return BAD_FORMAT;
 	
-	if(!format_ok(buffer, len-1))
-		return BAD_FORMAT;
-
 	create_grid(grid, len-1);
 	strncpy(grid->grid[0], buffer, grid->size);
 
@@ -60,7 +58,7 @@ int load_grid(FILE *stream, Grid *grid)
 	{
 		buffer = fgetln(stream, &len);
 
-		if((buffer == NULL) || ((len-1) < (unsigned int)grid->size) || 
+		if((buffer == NULL) || (len < (unsigned int)grid->size) || 
 			!format_ok(buffer, grid->size))
 		{
 			destroy_grid(grid);
