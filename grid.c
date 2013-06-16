@@ -47,7 +47,7 @@ int load_grid(FILE *stream, Grid *grid)
 	if(buffer == NULL)
 		return BAD_STREAM;
 	
-	if(((len-1) < SIZE_MIN) || ((len-1) > SIZE_MAX))
+	if(((len-1) < _MIN_) || ((len-1) > _MAX_))
 		return BAD_FORMAT;
 	
 	if(!format_ok(buffer, len-1))

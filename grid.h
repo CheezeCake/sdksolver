@@ -3,13 +3,13 @@
 
 #include <stdio.h>
 
-#define SIZE_MIN 2
-#define SIZE_MAX 35
+#define _MIN_ 2
+#define _MAX_ 35
 
-#define IS_NUMBER(X) ((X >= '1') && (X <= '9'))
+#define IS_NUMBER(X) ((X >= '0') && (X <= '9'))
 #define IS_LETTER(X) ((X >= 'A') && (X <= 'Z'))
 #define INT(X)  ((IS_NUMBER(X)) ? (X-'0') : ((X-'A')+10))
-#define CHAR(X) ((IS_NUMBER(X)) ? (X+'0') : X)
+#define CHAR(X) ((X <= 9) ? (X+'0') : ((X-10)+'A'))
 
 #define AUTHORIZED_CHAR(X, L) ((IS_NUMBER(X) || IS_LETTER(X)) ? (INT(X) <= L) \
                                                               : (X == ' '))
