@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grid.h"
+#include "solve.h"
 
 int main(int argc, char **argv)
 {
@@ -28,7 +29,10 @@ int main(int argc, char **argv)
 		return 3;
 	}
 	
-	print_grid(&grid);
+	if(solve(&grid, 0))
+		print_grid(&grid);
+	else
+		printf("impossible to solve.\n");
 
 	destroy_grid(&grid);
 
