@@ -3,6 +3,8 @@
 
 #include "grid.h"
 
+#define VERIF(G) (lines(G) && columns(G) && regions(G))
+
 int solve(Grid*, int);
 int lines(Grid*);
 int columns(Grid*);

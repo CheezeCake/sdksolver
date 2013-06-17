@@ -6,7 +6,7 @@ int solve(Grid *grid, int p)
 	int i, j, k;
 
 	if(p == (grid->size*grid->size))
-		return (lines(grid) && columns(grid) && regions(grid));
+		return VERIF(grid);
 	
 	i = p/grid->size;
 	j = p%grid->size;
@@ -17,11 +17,16 @@ int solve(Grid *grid, int p)
 		{
 			grid->grid[i][j] = CHAR(k);
 
-			if(solve(grid, p+1))
+			if(VERIF(grid) && solve(grid, p+1))
 				return 1;
 
 			grid->grid[i][j] = ' ';
 		}
+	}
+	else
+	{
+		if(solve(grid, p+1))
+			return 1;
 	}
 
 	return 0;
@@ -35,11 +40,14 @@ int lines(Grid *grid)
 		uint64_t mask = 0;
 		for(j = 0; j < grid->size; j++)
 		{
-			v = INT(grid->grid[i][j])-1;
-			if((mask & (1<<v)) == mask)
-				return 0;
+			if(grid->grid[i][j] != ' ')
+			{
+				v = INT(grid->grid[i][j])-1;
+				if((mask | (1<<v)) == mask)
+					return 0;
 
-			mask &= (1<<v);
+				mask |= (1<<v);
+			}
 		}
 	}
 
@@ -54,11 +62,14 @@ int columns(Grid *grid)
 		uint64_t mask = 0;
 		for(j = 0; j < grid->size; j++)
 		{
-			v = INT(grid->grid[j][i])-1;
-			if((mask & (1<<v) )== mask)
-				return 0;
+			if(grid->grid[j][i] != ' ')
+			{
+				v = INT(grid->grid[j][i])-1;
+				if((mask | (1<<v) )== mask)
+					return 0;
 
-			mask &= (1<<v);
+				mask |= (1<<v);
+			}
 		}
 	}
 
@@ -82,12 +93,15 @@ int regions(Grid *grid)
 					int a, b, v;
 					a = (i*grid->region_size)+k;
 					b = (j*grid->region_size)+l;
-					v = INT(grid->grid[a][b])-1;
+					if(grid->grid[a][b] != ' ')
+					{
+						v = INT(grid->grid[a][b])-1;
 
-					if((mask & (1<<v)) == mask)
-						return 0;
+						if((mask | (1<<v)) == mask)
+							return 0;
 
-					mask &= (1<<v);
+						mask |= (1<<v);
+					}
 				}
 			}
 		}
