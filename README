@@ -1,1 +1,15 @@
-Description:
+sdksolver is a simple command line sudoku solver.
+
+	It prints the solved grid to the standard output, or message saying it
+	is impossible to solve unless the -q (quiet) option is specified.
+
+Limitations:
+	size limits: 2 to 35
+	character set: [1-9A-Z]
+
+
+usage: sdksolver [-q] [file]
+
+examples: sdksolver sudoku.txt
+          or
+		  sdksolver < sudoku.txt
