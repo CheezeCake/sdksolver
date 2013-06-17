@@ -65,7 +65,7 @@ int columns(Grid *grid)
 			if(grid->grid[j][i] != ' ')
 			{
 				v = INT(grid->grid[j][i])-1;
-				if((mask | (1<<v) )== mask)
+				if((mask | (1<<v)) == mask)
 					return 0;
 
 				mask |= (1<<v);
