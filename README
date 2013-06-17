@@ -12,4 +12,4 @@ usage: sdksolver [-q] [file]
 
 examples: sdksolver sudoku.txt
           or
-		  sdksolver < sudoku.txt
+          sdksolver < sudoku.txt
