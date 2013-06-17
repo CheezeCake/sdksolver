@@ -87,11 +87,7 @@ int load_from_file(char *file, Grid *grid)
 
 void print_grid(Grid *grid)
 {
-	int i, j;
+	int i;
 	for(i = 0; i < grid->size; i++)
-	{
-		for(j = 0; j < grid->size; j++)
-			putchar(grid->grid[i][j]);
-		putchar('\n');
-	}
+		printf("%s\n", grid->grid[i]);
 }
