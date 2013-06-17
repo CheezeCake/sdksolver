@@ -6,7 +6,7 @@
 #define _MIN_ 2
 #define _MAX_ 35
 
-#define IS_NUMBER(X) ((X >= '0') && (X <= '9'))
+#define IS_NUMBER(X) ((X >= '1') && (X <= '9'))
 #define IS_LETTER(X) ((X >= 'A') && (X <= 'Z'))
 #define INT(X)  ((IS_NUMBER(X)) ? (X-'0') : ((X-'A')+10))
 #define CHAR(X) ((X <= 9) ? (X+'0') : ((X-10)+'A'))
