@@ -7,8 +7,11 @@ all: $(TARGET)
 $(TARGET): main.o grid.o solve.o
 	$(CC) $^ -o $@
 
-%.o: %.c
+main.o: main.c
 	$(CC) -c $^ $(CFLAGS)
+
+%.o: %.c %.h
+	$(CC) -c $< $(CFLAGS)
 
 .PHONY: clean mrproper rebuild
 
