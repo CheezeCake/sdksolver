@@ -1,6 +1,6 @@
 sdksolver is a simple command line sudoku solver.
 
-	It prints the solved grid to the standard output, or message saying it
+	It prints the solved grid to the standard output, or a message saying it
 	is impossible to solve unless the -q (quiet) option is specified.
 
 Limitations:
