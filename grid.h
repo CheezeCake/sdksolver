@@ -16,12 +16,13 @@
 
 enum {SUCCESS = 0, BAD_FORMAT, BAD_STREAM};
 
-typedef struct grid
+typedef struct grid Grid;
+struct grid
 {
 	char **grid;
 	int size;
 	int region_size;
-} Grid;
+};
 
 void create_grid(Grid*, int size);
 void destroy_grid(Grid*);
